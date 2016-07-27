@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Array",""],["Oid",""]],"type":[["BigSerial",""],["Bpchar",""],["Bytea",""],["Serial",""],["SmallSerial",""]]});
