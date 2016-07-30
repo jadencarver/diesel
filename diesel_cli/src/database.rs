@@ -60,7 +60,7 @@ fn create_database_if_needed(database_url: &String) -> DatabaseResult<()> {
                 let (database, postgres_url) = split_pg_connection_string(database_url);
                 println!("Creating database: {}", database);
                 let conn = try!(PgConnection::establish(&postgres_url));
-                try!(conn.execute(&format!("CREATE DATABASE {}", database)));
+                try!(conn.execute(&format!("CREATE DATABASE \"{}\"", database)));
             }
         },
         #[cfg(feature = "sqlite")]
@@ -100,7 +100,7 @@ fn drop_database(database_url: &String) -> DatabaseResult<()> {
             println!("Dropping database: {}", database);
             let conn = try!(PgConnection::establish(&postgres_url));
             try!(conn.silence_notices(|| {
-                conn.execute(&format!("DROP DATABASE IF EXISTS {}", database))
+                conn.execute(&format!("DROP DATABASE IF EXISTS \"{}\"", database))
             }));
         },
         #[cfg(feature = "sqlite")]
